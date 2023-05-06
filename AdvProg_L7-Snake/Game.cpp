@@ -50,8 +50,8 @@ Game::~Game()
  * 
 ***/
 
-void Game::snakeMoveTo(Position pos) {
-	//  START CODE HERE
+void Game::snakeMoveTo(Position pos)
+{
 	if (!pos.isInsideBox(0, 0, width, height) || getCellType(pos) == CELL_OFF_BOARD || getCellType(pos) == CELL_SNAKE)
 	{
 		status = GAME_OVER;
@@ -66,10 +66,7 @@ void Game::snakeMoveTo(Position pos) {
 	{
 		snake.growAtFront(pos);
 	}
-	// END CODE HERE
 }
-
-
 /***
  * PLEASE UPDATE THIS METHOD
  * 
@@ -113,7 +110,8 @@ void Game::processUserInput(Direction direction)
  * 
  ***/
 bool Game::canChange(Direction current, Direction next) const {
-	if ((current == UP || current == DOWN) && (next == UP || next == DOWN)) // YOUR CODE HERE
+	if ((current == UP || current == DOWN) && (next == UP || next == DOWN))
+		return 0; // YOUR CODE HERE
 	if ((current == LEFT || current == RIGHT) && (next == LEFT || next == RIGHT))
 		return 0;
 	return 1;
@@ -140,10 +138,11 @@ void Game::nextStep()
 	while (!inputQueue.empty()) {
 		// get the input direction from input queue
         Direction next ; // YOUR CODE HERE
-        next = inputQueue.front();
+		next = inputQueue.front();
+
 		// remove the front of input queue
         // YOUR CODE HERE
-        inputQueue.pop();
+		inputQueue.pop();
 		// check if snake can move to the next direction, set current direction as next
         if (canChange(currentDirection, next)) {
         	// YOUR CODE HERE
@@ -181,9 +180,10 @@ void Game::addCherry()
 
         	// assign the cherry position as randomPos, and set randomPos type as CELL_CHERRY
 
+			// YOUR CODE HERE
+			// YOUR CODE HERE
 			cherryPosition = randomPos;	
 			setCellType(randomPos, CELL_CHERRY);
-
        		break;
         }
     } while (true);
@@ -209,6 +209,7 @@ void Game::setCellType(Position pos, CellType cellType)
 	// Suggestion: use pos.isInsideBox(...) in Position class
 	//
 	// START CODE HERE
+	//  
 	if (pos.isInsideBox(0, 0, width, height)){
 		squares[pos.y][pos.x] = cellType;
 	}
